@@ -1,0 +1,49 @@
+package com.example.SpringBootSQLRESTAPI.Service;
+
+import com.example.SpringBootSQLRESTAPI.Entity.Videogames;
+import com.example.SpringBootSQLRESTAPI.Repository.VideogameDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class VideogameService implements VideogameServiceInterface {
+
+    @Autowired
+    public VideogameDAO videogameDAO;
+
+    @Override
+    public List<Videogames> getAllVideogames() {
+        return this.videogameDAO.findAll();
+    }
+
+    @Override
+    public Videogames getVideogame(int videoGameID) {
+        Optional< Videogames > optional = videogameDAO.findById(videoGameID);
+        Videogames videogame = null;
+        if (optional.isPresent()) {
+            videogame = optional.get();
+        } else {
+            throw new RuntimeException(" VideoGame not found for id :: " + videoGameID);
+        }
+        return videogame;
+    }
+
+    @Override
+    public Videogames addVideoGame(Videogames videogame) {
+        return this.videogameDAO.save(videogame);
+    }
+
+    @Override
+    public Videogames updateVideoGame(Videogames videogame) {
+        return this.videogameDAO.save(videogame);
+    }
+
+    @Override
+    public String deleteVideoGame(int videoGameID) {
+        videogameDAO.deleteById(videoGameID);
+        return "Delete VideoGame ID: " + videoGameID;
+    }
+}
