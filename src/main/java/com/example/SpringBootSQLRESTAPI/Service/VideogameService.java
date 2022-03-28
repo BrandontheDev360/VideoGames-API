@@ -26,7 +26,7 @@ public class VideogameService implements VideogameServiceInterface {
         if (optional.isPresent()) {
             videogame = optional.get();
         } else {
-            throw new RuntimeException(" VideoGame not found for id :: " + videoGameID);
+            System.out.println("VideoGame not found for id :" + videoGameID);
         }
         return videogame;
     }

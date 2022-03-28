@@ -34,7 +34,7 @@ public class Controller {
     }
 
     @PutMapping("/videogame/{id}")
-    public Videogames updateRecipe(@PathVariable("id") int id, @RequestBody Videogames videogame) {
+    public Videogames updateVideoGame(@PathVariable("id") int id, @RequestBody Videogames videogame) {
         return videogameServiceInterface.updateVideoGame(id, videogame);
     }
 
