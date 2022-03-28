@@ -21,7 +21,7 @@ public class VideogameService implements VideogameServiceInterface {
 
     @Override
     public Videogames getVideogame(int videoGameID) {
-        Optional< Videogames > optional = videogameDAO.findById(videoGameID);
+        Optional<Videogames> optional = videogameDAO.findById(videoGameID);
         Videogames videogame = null;
         if (optional.isPresent()) {
             videogame = optional.get();
@@ -37,8 +37,18 @@ public class VideogameService implements VideogameServiceInterface {
     }
 
     @Override
-    public Videogames updateVideoGame(Videogames videogame) {
-        return this.videogameDAO.save(videogame);
+    public Videogames updateVideoGame(int id, Videogames videogame) {
+        Optional<Videogames> videogameData = videogameDAO.findById(id);
+        Videogames updateVideoGame = null;
+        if(videogameData.isPresent()) {
+            updateVideoGame = videogameData.get();
+            updateVideoGame.setId(videogame.getId());
+            updateVideoGame.setTitle(videogame.getTitle());
+            updateVideoGame.setGenre(videogame.getGenre());
+            return this.videogameDAO.save(updateVideoGame);
+        } else {
+            return updateVideoGame;
+        }
     }
 
     @Override

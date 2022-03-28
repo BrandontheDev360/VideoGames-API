@@ -11,7 +11,7 @@ public interface VideogameServiceInterface {
 
     Videogames addVideoGame(Videogames videogame);
 
-    Videogames updateVideoGame(Videogames videogame);
+    Videogames updateVideoGame(int id, Videogames videogame);
 
     String deleteVideoGame(int videoGameID);
 }
