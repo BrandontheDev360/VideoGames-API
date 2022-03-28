@@ -38,7 +38,7 @@ public class Controller {
         return videogameServiceInterface.updateVideoGame(id, videogame);
     }
 
-    @DeleteMapping("/recipes/{id}")
+    @DeleteMapping("/videogame/{id}")
     String deleteVideoGame(@PathVariable("id") int id) {
         return videogameServiceInterface.deleteVideoGame(id);
     }

@@ -1,8 +1,7 @@
 package com.example.SpringBootSQLRESTAPI.Entity;
 
-import jdk.jfr.DataAmount;
-
 import javax.persistence.*;
+
 @Entity
 public class Videogames {
 
