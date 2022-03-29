@@ -42,7 +42,6 @@ public class VideogameService implements VideogameServiceInterface {
         Videogames updateVideoGame = null;
         if(videogameData.isPresent()) {
             updateVideoGame = videogameData.get();
-            updateVideoGame.setId(videogame.getId());
             updateVideoGame.setTitle(videogame.getTitle());
             updateVideoGame.setGenre(videogame.getGenre());
             return this.videogameDAO.save(updateVideoGame);

@@ -9,7 +9,11 @@ public class Videogames {
     @Column(name = "videogame_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column(name = "videogame_title")
     private String title;
+
+    @Column(name = "videogame_genre")
     private String genre;
 
 
