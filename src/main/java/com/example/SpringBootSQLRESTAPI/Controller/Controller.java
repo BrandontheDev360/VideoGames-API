@@ -23,27 +23,27 @@ public class Controller {
         return videogameServiceInterface.findVideogamesByTitle(title, pageNum, pageSize);
     }
 
-    @GetMapping("/videogame/{id}")
+    @GetMapping("get/videogame/{id}")
     public Videogames getVideogame(@PathVariable("id") int id) {
         return videogameServiceInterface.getVideogame(id);
     }
 
-    @GetMapping("/videogames/{pageNum}/{pageSize}")
+    @GetMapping("get/videogames/{pageNum}/{pageSize}")
     public List<Videogames> getAllVideoGames(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
         return videogameServiceInterface.getAllVideogames(pageNum, pageSize);
     }
 
-    @PostMapping("/videogame")
+    @PostMapping("post/videogame")
     public Videogames addVideoGame(@RequestBody Videogames videogame) {
         return videogameServiceInterface.addVideoGame(videogame);
     }
 
-    @PutMapping("/videogame/{id}")
+    @PutMapping("update/videogame/{id}")
     public Videogames updateVideoGame(@PathVariable("id") int id, @RequestBody Videogames videogame) {
         return videogameServiceInterface.updateVideoGame(id, videogame);
     }
 
-    @DeleteMapping("/videogame/{id}")
+    @DeleteMapping("delete/videogame/{id}")
     String deleteVideoGame(@PathVariable("id") int id) {
         return videogameServiceInterface.deleteVideoGame(id);
     }
