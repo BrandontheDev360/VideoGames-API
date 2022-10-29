@@ -3,6 +3,7 @@ package com.example.SpringBootSQLRESTAPI.Service;
 import com.example.SpringBootSQLRESTAPI.Entity.Videogames;
 
 import java.util.List;
+import java.util.Map;
 
 public interface VideogameServiceInterface {
 
@@ -16,5 +17,7 @@ public interface VideogameServiceInterface {
 
     String deleteVideoGame(int videoGameID);
 
-    List<Videogames> findVideogamesByTitle(String title, int pageNum, int pageSize);
+    Map<String, Object> findVideogamesByTitleLike(String title, int pageNum, int pageSize);
+
+    Map<String, Object> findVideoGamesByTitle(String title, int pageNum, int pageSize);
 }

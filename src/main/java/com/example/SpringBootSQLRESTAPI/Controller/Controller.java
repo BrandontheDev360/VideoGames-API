@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class Controller {
@@ -18,9 +19,14 @@ public class Controller {
         return "<HTML><HEAD><H1> VideoGame </H1></HEAD></HTML>";
     }
 
-    @GetMapping("/get/videogames/{title}/{pageNum}/{pageSize}")
-    public List<Videogames> findVideogamesByTitle(@PathVariable("title") String title, @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
-        return videogameServiceInterface.findVideogamesByTitle(title, pageNum, pageSize);
+    @GetMapping("/get/video-games-by/{title}/{pageNum}/{pageSize}")
+    public Map<String, Object> findVideoGamesByTitle(@PathVariable("title") String title, @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
+        return videogameServiceInterface.findVideoGamesByTitle(title, pageNum, pageSize);
+    }
+
+    @GetMapping("/get/video-games-like/{title}/{pageNum}/{pageSize}")
+    public Map<String, Object> findVideoGamesByTitleLike(@PathVariable("title") String title, @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
+        return videogameServiceInterface.findVideogamesByTitleLike(title, pageNum, pageSize);
     }
 
     @GetMapping("get/videogame/{id}")
