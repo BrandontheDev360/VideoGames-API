@@ -14,4 +14,6 @@ public interface VideogameServiceInterface {
     Videogames updateVideoGame(int id, Videogames videogame);
 
     String deleteVideoGame(int videoGameID);
+
+    List<Videogames> findVideogamesByTitle(String title);
 }

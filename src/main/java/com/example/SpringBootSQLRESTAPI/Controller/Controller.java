@@ -18,6 +18,11 @@ public class Controller {
         return "<HTML><HEAD><H1> VideoGame </H1></HEAD></HTML>";
     }
 
+    @GetMapping("/get/videogames/{title}")
+    public List<Videogames> findVideogamesByTitle(@PathVariable("title") String title) {
+        return videogameServiceInterface.findVideogamesByTitle(title);
+    }
+
     @GetMapping("/videogame/{id}")
     public Videogames getVideogame(@PathVariable("id") int id) {
         return videogameServiceInterface.getVideogame(id);

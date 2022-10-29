@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class VideogameService implements VideogameServiceInterface {
+public class VideogameServiceImpl implements VideogameServiceInterface {
 
     @Autowired
     public VideogameDAO videogameDAO;
@@ -54,5 +54,10 @@ public class VideogameService implements VideogameServiceInterface {
     public String deleteVideoGame(int videoGameID) {
         videogameDAO.deleteById(videoGameID);
         return "Delete VideoGame ID: " + videoGameID;
+    }
+
+    @Override
+    public List<Videogames> findVideogamesByTitle(String title) {
+        return videogameDAO.findByTitle(title);
     }
 }
