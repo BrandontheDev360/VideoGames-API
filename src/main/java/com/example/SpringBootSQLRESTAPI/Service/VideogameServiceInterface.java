@@ -5,7 +5,8 @@ import com.example.SpringBootSQLRESTAPI.Entity.Videogames;
 import java.util.List;
 
 public interface VideogameServiceInterface {
-    List<Videogames> getAllVideogames();
+
+    List<Videogames> getAllVideogames(int pageNum, int pageSize);
 
     Videogames getVideogame(int videoGameID);
 
@@ -15,5 +16,5 @@ public interface VideogameServiceInterface {
 
     String deleteVideoGame(int videoGameID);
 
-    List<Videogames> findVideogamesByTitle(String title);
+    List<Videogames> findVideogamesByTitle(String title, int pageNum, int pageSize);
 }

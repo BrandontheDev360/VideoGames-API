@@ -18,9 +18,9 @@ public class Controller {
         return "<HTML><HEAD><H1> VideoGame </H1></HEAD></HTML>";
     }
 
-    @GetMapping("/get/videogames/{title}")
-    public List<Videogames> findVideogamesByTitle(@PathVariable("title") String title) {
-        return videogameServiceInterface.findVideogamesByTitle(title);
+    @GetMapping("/get/videogames/{title}/{pageNum}/{pageSize}")
+    public List<Videogames> findVideogamesByTitle(@PathVariable("title") String title, @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
+        return videogameServiceInterface.findVideogamesByTitle(title, pageNum, pageSize);
     }
 
     @GetMapping("/videogame/{id}")
@@ -28,9 +28,9 @@ public class Controller {
         return videogameServiceInterface.getVideogame(id);
     }
 
-    @GetMapping("/videogames")
-    public List<Videogames> getAllVideoGames() {
-        return videogameServiceInterface.getAllVideogames();
+    @GetMapping("/videogames/{pageNum}/{pageSize}")
+    public List<Videogames> getAllVideoGames(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
+        return videogameServiceInterface.getAllVideogames(pageNum, pageSize);
     }
 
     @PostMapping("/videogame")

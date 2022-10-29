@@ -3,6 +3,8 @@ package com.example.SpringBootSQLRESTAPI.Service;
 import com.example.SpringBootSQLRESTAPI.Entity.Videogames;
 import com.example.SpringBootSQLRESTAPI.Repository.VideogameDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +17,8 @@ public class VideogameServiceImpl implements VideogameServiceInterface {
     public VideogameDAO videogameDAO;
 
     @Override
-    public List<Videogames> getAllVideogames() {
-        return this.videogameDAO.findAll();
+    public List<Videogames> getAllVideogames(int pageNum, int pageSize) {
+        return videogameDAO.findAll(PageRequest.of(pageNum,pageSize)).toList();
     }
 
     @Override
@@ -39,7 +41,7 @@ public class VideogameServiceImpl implements VideogameServiceInterface {
     @Override
     public Videogames updateVideoGame(int id, Videogames videogame) {
         Optional<Videogames> videogameData = videogameDAO.findById(id);
-        Videogames updateVideoGame = null;
+        Videogames updateVideoGame = new Videogames();
         if(videogameData.isPresent()) {
             updateVideoGame = videogameData.get();
             updateVideoGame.setTitle(videogame.getTitle());
@@ -57,7 +59,9 @@ public class VideogameServiceImpl implements VideogameServiceInterface {
     }
 
     @Override
-    public List<Videogames> findVideogamesByTitle(String title) {
-        return videogameDAO.findByTitle(title);
+    public List<Videogames> findVideogamesByTitle(String title, int pageNum, int pageSize) {
+        Pageable paging = PageRequest.of(pageNum, pageSize);
+        List<Videogames> pagedResult = videogameDAO.findByTitle(title, paging);
+        return pagedResult;
     }
 }
