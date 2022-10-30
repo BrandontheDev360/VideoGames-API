@@ -7,9 +7,9 @@ import java.util.Map;
 
 public interface VideogameServiceInterface {
 
-    List<Videogames> getAllVideogames(int pageNum, int pageSize);
+    Map<String, Object> getAllVideoGames(int pageNum, int pageSize);
 
-    Videogames getVideogame(int videoGameID);
+    Videogames getVideoGame(int videoGameID);
 
     Videogames addVideoGame(Videogames videogame);
 
@@ -17,7 +17,7 @@ public interface VideogameServiceInterface {
 
     String deleteVideoGame(int videoGameID);
 
-    Map<String, Object> findVideogamesByTitleLike(String title, int pageNum, int pageSize);
+    Map<String, Object> findVideoGamesByTitleLike(String title, int pageNum, int pageSize);
 
     Map<String, Object> findVideoGamesByTitle(String title, int pageNum, int pageSize);
 }

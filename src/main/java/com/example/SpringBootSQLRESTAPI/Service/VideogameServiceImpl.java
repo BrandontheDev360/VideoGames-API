@@ -20,12 +20,18 @@ public class VideogameServiceImpl implements VideogameServiceInterface {
     public VideogameDAO videogameDAO;
 
     @Override
-    public List<Videogames> getAllVideogames(int pageNum, int pageSize) {
-        return videogameDAO.findAll(PageRequest.of(pageNum,pageSize)).toList();
+    public Map<String, Object> getAllVideoGames(int pageNum, int pageSize) {
+        Pageable page = PageRequest.of(pageNum, pageSize);
+        Page<Videogames> pagedResult = videogameDAO.findAll(page);
+        Map<String, Object> response = new LinkedHashMap<>();
+        response.put("videogames", pagedResult.getContent());
+        response.put("currentpage", pagedResult.getNumber() + 1);
+        response.put("totalpages", pagedResult.getTotalPages());
+        return response;
     }
 
     @Override
-    public Videogames getVideogame(int videoGameID) {
+    public Videogames getVideoGame(int videoGameID) {
         Optional<Videogames> optional = videogameDAO.findById(videoGameID);
         Videogames videogame = null;
         if (optional.isPresent()) {
@@ -62,7 +68,7 @@ public class VideogameServiceImpl implements VideogameServiceInterface {
     }
 
     @Override
-    public Map<String, Object> findVideogamesByTitleLike(String title, int pageNum, int pageSize) {
+    public Map<String, Object> findVideoGamesByTitleLike(String title, int pageNum, int pageSize) {
         Pageable paging = PageRequest.of(pageNum, pageSize);
         Page<Videogames> pagedResult = videogameDAO.findByTitleLikeIgnoreCase(title, paging);
         Map<String, Object> response = new LinkedHashMap<>();

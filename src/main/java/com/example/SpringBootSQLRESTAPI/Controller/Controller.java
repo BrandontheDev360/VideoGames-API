@@ -26,17 +26,17 @@ public class Controller {
 
     @GetMapping("/get/video-games-like/{title}/{pageNum}/{pageSize}")
     public Map<String, Object> findVideoGamesByTitleLike(@PathVariable("title") String title, @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
-        return videogameServiceInterface.findVideogamesByTitleLike(title, pageNum, pageSize);
+        return videogameServiceInterface.findVideoGamesByTitleLike(title, pageNum, pageSize);
     }
 
     @GetMapping("get/videogame/{id}")
-    public Videogames getVideogame(@PathVariable("id") int id) {
-        return videogameServiceInterface.getVideogame(id);
+    public Videogames getVideoGame(@PathVariable("id") int id) {
+        return videogameServiceInterface.getVideoGame(id);
     }
 
     @GetMapping("get/videogames/{pageNum}/{pageSize}")
-    public List<Videogames> getAllVideoGames(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
-        return videogameServiceInterface.getAllVideogames(pageNum, pageSize);
+    public Map<String, Object> getAllVideoGames(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
+        return videogameServiceInterface.getAllVideoGames(pageNum, pageSize);
     }
 
     @PostMapping("post/videogame")
