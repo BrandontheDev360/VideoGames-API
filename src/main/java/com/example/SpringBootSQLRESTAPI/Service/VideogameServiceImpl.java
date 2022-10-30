@@ -31,7 +31,7 @@ public class VideogameServiceImpl implements VideogameServiceInterface {
     }
 
     @Override
-    public VideoGames getVideoGame(int videoGameID) {
+    public VideoGames getVideoGameById(int videoGameID) {
         Optional<VideoGames> optional = videogameDAO.findById(videoGameID);
         VideoGames videogame = null;
         if (optional.isPresent()) {

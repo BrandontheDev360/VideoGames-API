@@ -9,7 +9,7 @@ public interface VideogameServiceInterface {
 
     Map<String, Object> getAllVideoGames(int pageNum, int pageSize);
 
-    VideoGames getVideoGame(int videoGameID);
+    VideoGames getVideoGameById(int videoGameID);
 
     VideoGames addVideoGame(VideoGames videogame);
 

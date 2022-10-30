@@ -38,15 +38,15 @@ public class Controller {
         return videogameServiceInterface.findVideoGamesByTitleLike(title, pageNum, pageSize);
     }
 
-    @GetMapping("get/videogame/{id}")
-    public ResponseEntity<Response> getVideoGame(@PathVariable("id") int id) {
+    @GetMapping("get/video-game-by/{id}")
+    public ResponseEntity<Response> getVideoGameById(@PathVariable("id") int id) {
         try {
             return ResponseEntity.ok(
                     Response.builder()
                             .status(OK)
                             .statusCode(OK.value())
                             .message("VideoGame Id: " + id + " successfully retrieved")
-                            .data(Map.of("videogame", videogameServiceInterface.getVideoGame(id)))
+                            .data(Map.of("videogame", videogameServiceInterface.getVideoGameById(id)))
                             .timestamp(now())
                             .build());
         } catch (Exception e) {
@@ -60,9 +60,26 @@ public class Controller {
         }
     }
 
-    @GetMapping("get/videogames/{pageNum}/{pageSize}")
-    public Map<String, Object> getAllVideoGames(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
-        return videogameServiceInterface.getAllVideoGames(pageNum, pageSize);
+    @GetMapping("get/all-video-games-page/{pageNum}/{pageSize}")
+    public ResponseEntity<Response> getAllVideoGames(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
+        try {
+            return ResponseEntity.ok(
+                    Response.builder()
+                            .status(OK)
+                            .statusCode(OK.value())
+                            .message("Successfully retrieved all VideoGames")
+                            .data(videogameServiceInterface.getAllVideoGames(pageNum, pageSize))
+                            .timestamp(now())
+                            .build());
+        } catch (Exception e) {
+            return ResponseEntity.ok(
+                    Response.builder()
+                            .status(NO_CONTENT)
+                            .statusCode(NO_CONTENT.value())
+                            .message("Failed to retrieve all VideoGames")
+                            .timestamp(now())
+                            .build());
+        }
     }
 
     @PostMapping("post/videogame")
