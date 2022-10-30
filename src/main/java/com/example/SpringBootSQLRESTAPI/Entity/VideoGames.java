@@ -12,7 +12,8 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Videogames {
+@Table(schema = "dbo", name = "videogames")
+public class VideoGames {
 
     @Id
     @Column(name = "videogame_id")

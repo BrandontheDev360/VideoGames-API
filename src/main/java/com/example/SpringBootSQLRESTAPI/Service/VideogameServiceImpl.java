@@ -1,6 +1,6 @@
 package com.example.SpringBootSQLRESTAPI.Service;
 
-import com.example.SpringBootSQLRESTAPI.Entity.Videogames;
+import com.example.SpringBootSQLRESTAPI.Entity.VideoGames;
 import com.example.SpringBootSQLRESTAPI.Repository.VideogameDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +22,7 @@ public class VideogameServiceImpl implements VideogameServiceInterface {
     @Override
     public Map<String, Object> getAllVideoGames(int pageNum, int pageSize) {
         Pageable page = PageRequest.of(pageNum, pageSize);
-        Page<Videogames> pagedResult = videogameDAO.findAll(page);
+        Page<VideoGames> pagedResult = videogameDAO.findAll(page);
         Map<String, Object> response = new LinkedHashMap<>();
         response.put("videogames", pagedResult.getContent());
         response.put("currentpage", pagedResult.getNumber() + 1);
@@ -31,9 +31,9 @@ public class VideogameServiceImpl implements VideogameServiceInterface {
     }
 
     @Override
-    public Videogames getVideoGame(int videoGameID) {
-        Optional<Videogames> optional = videogameDAO.findById(videoGameID);
-        Videogames videogame = null;
+    public VideoGames getVideoGame(int videoGameID) {
+        Optional<VideoGames> optional = videogameDAO.findById(videoGameID);
+        VideoGames videogame = null;
         if (optional.isPresent()) {
             videogame = optional.get();
         } else {
@@ -43,14 +43,14 @@ public class VideogameServiceImpl implements VideogameServiceInterface {
     }
 
     @Override
-    public Videogames addVideoGame(Videogames videogame) {
+    public VideoGames addVideoGame(VideoGames videogame) {
         return this.videogameDAO.save(videogame);
     }
 
     @Override
-    public Videogames updateVideoGame(int id, Videogames videogame) {
-        Optional<Videogames> videogameData = videogameDAO.findById(id);
-        Videogames updateVideoGame = new Videogames();
+    public VideoGames updateVideoGame(int id, VideoGames videogame) {
+        Optional<VideoGames> videogameData = videogameDAO.findById(id);
+        VideoGames updateVideoGame = new VideoGames();
         if(videogameData.isPresent()) {
             updateVideoGame = videogameData.get();
             updateVideoGame.setTitle(videogame.getTitle());
@@ -70,7 +70,7 @@ public class VideogameServiceImpl implements VideogameServiceInterface {
     @Override
     public Map<String, Object> findVideoGamesByTitleLike(String title, int pageNum, int pageSize) {
         Pageable paging = PageRequest.of(pageNum, pageSize);
-        Page<Videogames> pagedResult = videogameDAO.findByTitleLikeIgnoreCase(title, paging);
+        Page<VideoGames> pagedResult = videogameDAO.findByTitleLikeIgnoreCase(title, paging);
         Map<String, Object> response = new LinkedHashMap<>();
         response.put("videogames", pagedResult.getContent());
         response.put("currentpage", pagedResult.getNumber() + 1);
@@ -81,7 +81,7 @@ public class VideogameServiceImpl implements VideogameServiceInterface {
     @Override
     public Map<String, Object> findVideoGamesByTitle(String title, int pageNum, int pageSize) {
         Pageable paging = PageRequest.of(pageNum, pageSize);
-        Page<Videogames> pagedResult = videogameDAO.findByTitle(title, paging);
+        Page<VideoGames> pagedResult = videogameDAO.findByTitle(title, paging);
         Map<String, Object> response = new LinkedHashMap<>();
         response.put("videogames", pagedResult.getContent());
         response.put("currentpage", pagedResult.getNumber() + 1);

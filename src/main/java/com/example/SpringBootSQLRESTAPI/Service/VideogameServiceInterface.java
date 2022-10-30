@@ -1,6 +1,6 @@
 package com.example.SpringBootSQLRESTAPI.Service;
 
-import com.example.SpringBootSQLRESTAPI.Entity.Videogames;
+import com.example.SpringBootSQLRESTAPI.Entity.VideoGames;
 
 import java.util.List;
 import java.util.Map;
@@ -9,11 +9,11 @@ public interface VideogameServiceInterface {
 
     Map<String, Object> getAllVideoGames(int pageNum, int pageSize);
 
-    Videogames getVideoGame(int videoGameID);
+    VideoGames getVideoGame(int videoGameID);
 
-    Videogames addVideoGame(Videogames videogame);
+    VideoGames addVideoGame(VideoGames videogame);
 
-    Videogames updateVideoGame(int id, Videogames videogame);
+    VideoGames updateVideoGame(int id, VideoGames videogame);
 
     String deleteVideoGame(int videoGameID);
 
