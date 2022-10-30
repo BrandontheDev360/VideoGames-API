@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import static java.time.LocalDateTime.now;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
 public class Controller {
+    Logger logger;
 
     @Autowired
     VideogameServiceInterface videogameServiceInterface;
@@ -48,6 +50,7 @@ public class Controller {
                             .timestamp(now())
                             .build());
         } catch (Exception e) {
+            logger.info("Exception Occurred, Message : " + e.getMessage());
             return ResponseEntity.ok(
                     Response.builder()
                             .status(NOT_FOUND)
