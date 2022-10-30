@@ -50,7 +50,6 @@ public class Controller {
                             .timestamp(now())
                             .build());
         } catch (Exception e) {
-            logger.info("Exception Occurred, Message : " + e.getMessage());
             return ResponseEntity.ok(
                     Response.builder()
                             .status(NOT_FOUND)
