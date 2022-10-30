@@ -34,8 +34,25 @@ public class Controller {
     }
 
     @GetMapping("/get/video-games-like/{title}/{pageNum}/{pageSize}")
-    public Map<String, Object> findVideoGamesByTitleLike(@PathVariable("title") String title, @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
-        return videogameServiceInterface.findVideoGamesByTitleLike(title, pageNum, pageSize);
+    public ResponseEntity<Response> findVideoGamesByTitleLike(@PathVariable("title") String title, @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
+        try {
+            return ResponseEntity.ok(
+                    Response.builder()
+                            .status(OK)
+                            .statusCode(OK.value())
+                            .message("VideoGame Title: " + title + " successfully retrieved")
+                            .data(videogameServiceInterface.findVideoGamesByTitleLike(title, pageNum, pageSize))
+                            .timestamp(now())
+                            .build());
+        } catch (Exception e) {
+            return ResponseEntity.ok(
+                    Response.builder()
+                            .status(NOT_FOUND)
+                            .statusCode(NOT_FOUND.value())
+                            .message("VideoGame Title: " + title + " failed to retrieve")
+                            .timestamp(now())
+                            .build());
+        }
     }
 
     @GetMapping("get/video-game-by/{id}")
