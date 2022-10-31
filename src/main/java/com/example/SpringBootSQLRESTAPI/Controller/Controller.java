@@ -28,7 +28,7 @@ public class Controller {
         return "<HTML><HEAD><H1> VideoGame </H1></HEAD></HTML>";
     }
 
-    @GetMapping("/get/video-games-by/{title}/{pageNum}/{pageSize}")
+    @GetMapping("/get/video-games-by-title/{title}/{pageNum}/{pageSize}")
     public Map<String, Object> findVideoGamesByTitle(@PathVariable("title") String title, @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
         return videogameServiceInterface.findVideoGamesByTitle(title, pageNum, pageSize);
     }
@@ -50,6 +50,28 @@ public class Controller {
                             .status(NOT_FOUND)
                             .statusCode(NOT_FOUND.value())
                             .message("VideoGame Title: " + title + " failed to retrieve")
+                            .timestamp(now())
+                            .build());
+        }
+    }
+
+    @GetMapping("/get/video-games-by-genre/{genre}/{pageNum}/{pageSize}")
+    public ResponseEntity<Response> findVideoGamesByGenre(@PathVariable("genre") String genre, @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
+        try {
+            return ResponseEntity.ok(
+                    Response.builder()
+                            .status(OK)
+                            .statusCode(OK.value())
+                            .message("VideoGame Genre: " + genre + " successfully retrieved")
+                            .data(videogameServiceInterface.findVideoGamesByGenre(genre, pageNum, pageSize))
+                            .timestamp(now())
+                            .build());
+        } catch (Exception e) {
+            return ResponseEntity.ok(
+                    Response.builder()
+                            .status(NOT_FOUND)
+                            .statusCode(NOT_FOUND.value())
+                            .message("VideoGame Genre: " + genre + " failed to retrieve")
                             .timestamp(now())
                             .build());
         }

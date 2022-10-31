@@ -17,5 +17,8 @@ public interface VideogameDAO extends PagingAndSortingRepository<VideoGames, Int
     @Query(value = "SELECT * FROM [dbo].[videogames] WHERE videogame_title LIKE ?1%", nativeQuery = true)
     Page<VideoGames> findByTitleLikeIgnoreCase(String title, Pageable pageable);
 
+    @Query(value = "SELECT * FROM [dbo].[videogames] WHERE videogame_genre LIKE ?1%", nativeQuery = true)
+    Page<VideoGames> findByGenreLikeIgnoreCase(String genre, Pageable page);
+
 
 }

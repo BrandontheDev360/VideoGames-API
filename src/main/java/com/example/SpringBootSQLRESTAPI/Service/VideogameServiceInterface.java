@@ -20,4 +20,6 @@ public interface VideogameServiceInterface {
     Map<String, Object> findVideoGamesByTitleLike(String title, int pageNum, int pageSize);
 
     Map<String, Object> findVideoGamesByTitle(String title, int pageNum, int pageSize);
+
+    Map<String, Object> findVideoGamesByGenre(String genre, int pageNum, int pageSize);
 }

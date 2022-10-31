@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -82,6 +81,17 @@ public class VideogameServiceImpl implements VideogameServiceInterface {
     public Map<String, Object> findVideoGamesByTitle(String title, int pageNum, int pageSize) {
         Pageable paging = PageRequest.of(pageNum, pageSize);
         Page<VideoGames> pagedResult = videogameDAO.findByTitle(title, paging);
+        Map<String, Object> response = new LinkedHashMap<>();
+        response.put("videogames", pagedResult.getContent());
+        response.put("currentpage", pagedResult.getNumber() + 1);
+        response.put("totalpages", pagedResult.getTotalPages());
+        return response;
+    }
+
+    @Override
+    public Map<String, Object> findVideoGamesByGenre(String genre, int pageNum, int pageSize) {
+        Pageable page = PageRequest.of(pageNum, pageSize);
+        Page<VideoGames> pagedResult = videogameDAO.findByGenreLikeIgnoreCase(genre, page);
         Map<String, Object> response = new LinkedHashMap<>();
         response.put("videogames", pagedResult.getContent());
         response.put("currentpage", pagedResult.getNumber() + 1);
