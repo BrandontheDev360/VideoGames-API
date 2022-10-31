@@ -122,8 +122,25 @@ public class Controller {
     }
 
     @PostMapping("post/videogame")
-    public VideoGames addVideoGame(@RequestBody VideoGames videogame) {
-        return videogameServiceInterface.addVideoGame(videogame);
+    public ResponseEntity<Response> addVideoGame(@RequestBody VideoGames videogame) {
+        try {
+            return ResponseEntity.ok(
+                    Response.builder()
+                            .status(OK)
+                            .statusCode(OK.value())
+                            .message("Successfully Added VideoGame: " + videogame.getTitle())
+                            .data(Map.of("videogame", videogameServiceInterface.addVideoGame(videogame)))
+                            .timestamp(now())
+                            .build());
+        } catch (Exception e) {
+            return ResponseEntity.ok(
+                    Response.builder()
+                            .status(BAD_REQUEST)
+                            .statusCode(BAD_REQUEST.value())
+                            .message("Failed to add VideoGame with title " + videogame.getTitle())
+                            .timestamp(now())
+                            .build());
+        }
     }
 
     @PutMapping("update/videogame/{id}")
