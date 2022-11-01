@@ -1,14 +1,17 @@
 package com.example.SpringBootSQLRESTAPI.Service;
 
 import com.example.SpringBootSQLRESTAPI.Entity.VideoGames;
+import com.example.SpringBootSQLRESTAPI.Entity.VideoGamesTitles;
 import com.example.SpringBootSQLRESTAPI.Repository.VideogameDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -96,6 +99,22 @@ public class VideogameServiceImpl implements VideogameServiceInterface {
         response.put("videogames", pagedResult.getContent());
         response.put("currentpage", pagedResult.getNumber() + 1);
         response.put("totalpages", pagedResult.getTotalPages());
+        return response;
+    }
+
+    @Override
+    public Map<String, Object> getAllVideoGamesTitles(int pageNum, int pageSize) {
+        Pageable page = PageRequest.of(pageNum, pageSize);
+        List<Object[]> result = videogameDAO.getVideoGamesTitles();
+        PagedListHolder<Object[]> pagedResult = new PagedListHolder<>(result);
+        pagedResult.setPage(pageNum);
+        pagedResult.setPageSize(pageSize);
+        System.out.println(pagedResult);
+        Map<String, Object> response = new LinkedHashMap<>();
+        response.put("videogame titles", pagedResult.getPageList());
+        response.put("currentpage", pagedResult.getPage() + 1);
+        response.put("totalpages", pagedResult.getPageCount());
+        System.out.println(response);
         return response;
     }
 

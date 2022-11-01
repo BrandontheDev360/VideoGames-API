@@ -12,6 +12,12 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(
+                name = "sp_Get_Video_Games_Titles",
+                procedureName = "sp_Get_Video_Games_Titles"
+        )
+})
 @Table(schema = "dbo", name = "videogames")
 public class VideoGames {
 

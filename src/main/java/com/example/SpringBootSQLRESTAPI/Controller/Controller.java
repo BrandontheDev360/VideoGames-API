@@ -121,6 +121,28 @@ public class Controller {
         }
     }
 
+    @GetMapping("get/all-video-games-titles/{pageNum}/{pageSize}")
+    public ResponseEntity<Response> getAllVideoGamesTitles(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
+        try {
+            return ResponseEntity.ok(
+                    Response.builder()
+                            .status(OK)
+                            .statusCode(OK.value())
+                            .message("Successfully retrieved all VideoGames Titles")
+                            .data(videogameServiceInterface.getAllVideoGamesTitles(pageNum, pageSize))
+                            .timestamp(now())
+                            .build());
+        } catch (Exception e) {
+            return ResponseEntity.ok(
+                    Response.builder()
+                            .status(NO_CONTENT)
+                            .statusCode(NO_CONTENT.value())
+                            .message("Failed to retrieve all VideoGames Titles")
+                            .timestamp(now())
+                            .build());
+        }
+    }
+
     @PostMapping("post/videogame")
     public ResponseEntity<Response> addVideoGame(@RequestBody VideoGames videogame) {
         try {
