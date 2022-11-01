@@ -113,14 +113,14 @@ public class VideogameServiceImpl implements VideogameServiceInterface {
         pagedResult.setPageSize(pageSize);
         System.out.println(pagedResult.getPageList());
         Map<String, Object> response = new LinkedHashMap<>();
-        List<Map<String, Object>> mappingResultsList = new ArrayList<>();
-        for (Object[] eachResult : results) {
-            Map<String, Object> mappingResults = new LinkedHashMap<>();
-            mappingResults.put("videogame_id", eachResult[1]);
-            mappingResults.put("videogame_title", eachResult[0]);
-            mappingResultsList.add(mappingResults);
+        List<Map<String, Object>> mappingPageResultList = new ArrayList<>();
+        for (Object[] eachResult : pagedResult.getPageList()) {
+            Map<String, Object> mappingPageResults = new LinkedHashMap<>();
+            mappingPageResults.put("videogame_id", eachResult[0]);
+            mappingPageResults.put("videogame_title", eachResult[1]);
+            mappingPageResultList.add(mappingPageResults);
         }
-        response.put("videoGameTitleResults", mappingResultsList);
+        response.put("videoGameTitleResults", mappingPageResultList);
         response.put("currentPage", pagedResult.getPage() + 1);
         response.put("totalPages", pagedResult.getPageCount());
         System.out.println(response);
