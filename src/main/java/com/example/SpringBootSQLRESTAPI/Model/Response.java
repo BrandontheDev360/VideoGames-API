@@ -16,6 +16,8 @@ public class Response {
     protected int statusCode;
     protected String message;
     protected Map<?, ?> data;
+    protected Object currentPage;
+    protected Object totalPages;
     protected LocalDateTime timestamp;
 
 }

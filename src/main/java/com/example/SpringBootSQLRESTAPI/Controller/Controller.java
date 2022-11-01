@@ -4,6 +4,7 @@ import com.example.SpringBootSQLRESTAPI.Entity.VideoGames;
 import com.example.SpringBootSQLRESTAPI.Model.Response;
 import com.example.SpringBootSQLRESTAPI.Service.VideogameServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -142,6 +143,7 @@ public class Controller {
                             .build());
         }
     }
+
 
     @PostMapping("post/videogame")
     public ResponseEntity<Response> addVideoGame(@RequestBody VideoGames videogame) {
