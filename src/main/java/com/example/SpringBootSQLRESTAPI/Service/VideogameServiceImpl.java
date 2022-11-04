@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
@@ -17,9 +18,15 @@ import java.util.*;
 @Service
 public class VideogameServiceImpl implements VideogameServiceInterface {
 
-    @Autowired
     public VideogameDAO videogameDAO;
 
+    public VideogameServiceImpl(VideogameDAO videogameDAO) {
+        this.videogameDAO = videogameDAO;
+    }
+
+    public VideogameServiceImpl(EntityManager em) {
+        this.em = em;
+    }
     @PersistenceContext
     private EntityManager em;
 
@@ -125,6 +132,11 @@ public class VideogameServiceImpl implements VideogameServiceInterface {
         response.put("totalPages", pagedResult.getPageCount());
         System.out.println(response);
         return response;
+    }
+
+    @Override
+    public VideoGames findByGenre(String genre) {
+        return videogameDAO.findByGenre(genre);
     }
 
 }

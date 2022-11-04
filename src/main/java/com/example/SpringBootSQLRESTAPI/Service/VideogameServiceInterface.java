@@ -26,5 +26,7 @@ public interface VideogameServiceInterface {
 
     Map<String, Object> getAllVideoGamesTitles(int pageNum, int pageSize);
 
+    VideoGames findByGenre(String genre);
+
 //    PagedListHolder<Object> getAllVideoGamesTitles(int pageNum, int pageSize);
 }

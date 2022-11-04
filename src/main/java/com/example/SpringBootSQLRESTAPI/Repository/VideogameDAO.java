@@ -13,6 +13,8 @@ import java.util.List;
 public interface VideogameDAO  extends PagingAndSortingRepository<VideoGames, Integer> {
     Page<VideoGames> findByTitle(String title, Pageable page);
 
+    VideoGames findByGenre(String genre);
+
     @Query(value = "SELECT * FROM [dbo].[videogames] WHERE videogame_title LIKE ?1%", nativeQuery = true)
     Page<VideoGames> findByTitleLikeIgnoreCase(String title, Pageable pageable);
 

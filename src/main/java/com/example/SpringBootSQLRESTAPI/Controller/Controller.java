@@ -21,8 +21,11 @@ import static org.springframework.http.HttpStatus.*;
 public class Controller {
     Logger logger;
 
-    @Autowired
     VideogameServiceInterface videogameServiceInterface;
+
+    public Controller (VideogameServiceInterface videogameServiceInterface) {
+        this.videogameServiceInterface = videogameServiceInterface;
+    }
 
     @GetMapping("/")
     public String home() {
