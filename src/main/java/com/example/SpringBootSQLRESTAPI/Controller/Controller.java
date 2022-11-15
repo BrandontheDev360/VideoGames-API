@@ -2,15 +2,12 @@ package com.example.SpringBootSQLRESTAPI.Controller;
 
 import com.example.SpringBootSQLRESTAPI.Entity.VideoGames;
 import com.example.SpringBootSQLRESTAPI.Model.Response;
-import com.example.SpringBootSQLRESTAPI.Service.VideogameServiceInterface;
+import com.example.SpringBootSQLRESTAPI.Service.Interfaces.UserServiceInterface;
+import com.example.SpringBootSQLRESTAPI.Service.Interfaces.VideogameServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -21,15 +18,22 @@ import static org.springframework.http.HttpStatus.*;
 public class Controller {
     Logger logger;
 
+    @Autowired
     VideogameServiceInterface videogameServiceInterface;
 
-    public Controller (VideogameServiceInterface videogameServiceInterface) {
-        this.videogameServiceInterface = videogameServiceInterface;
-    }
+    @Autowired
+    UserServiceInterface userServiceInterface;
 
     @GetMapping("/")
     public String home() {
         return "<HTML><HEAD><H1> VideoGame </H1></HEAD></HTML>";
+    }
+
+    @GetMapping("/get-all-users")
+    public ResponseEntity<?> getAllUsers() {
+        return ResponseEntity.ok(
+                userServiceInterface.getAllUsers()
+        );
     }
 
     @GetMapping("/get/video-games-by-title/{title}/{pageNum}/{pageSize}")
@@ -104,16 +108,9 @@ public class Controller {
     }
 
     @GetMapping("get/all-video-games-page/{pageNum}/{pageSize}")
-    public ResponseEntity<Response> getAllVideoGames(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
+    public ResponseEntity<?> getAllVideoGames(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
         try {
-            return ResponseEntity.ok(
-                    Response.builder()
-                            .status(OK)
-                            .statusCode(OK.value())
-                            .message("Successfully retrieved all VideoGames")
-                            .data(videogameServiceInterface.getAllVideoGames(pageNum, pageSize))
-                            .timestamp(now())
-                            .build());
+            return ResponseEntity.ok(videogameServiceInterface.getAllVideoGames(pageNum, pageSize));
         } catch (Exception e) {
             return ResponseEntity.ok(
                     Response.builder()

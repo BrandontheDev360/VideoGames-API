@@ -1,43 +1,43 @@
-package com.example.SpringBootSQLRESTAPI.Service;
+package com.example.SpringBootSQLRESTAPI.Service.Implementations;
 
 import com.example.SpringBootSQLRESTAPI.Entity.VideoGames;
+import com.example.SpringBootSQLRESTAPI.Model.getAllVideoGamesResponse;
 import com.example.SpringBootSQLRESTAPI.Repository.VideogameDAO;
+import com.example.SpringBootSQLRESTAPI.Service.Interfaces.VideogameServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
 public class VideogameServiceImpl implements VideogameServiceInterface {
 
+    @Autowired
     public VideogameDAO videogameDAO;
 
-    public VideogameServiceImpl(VideogameDAO videogameDAO) {
-        this.videogameDAO = videogameDAO;
-    }
-
-    public VideogameServiceImpl(EntityManager em) {
-        this.em = em;
-    }
-    @PersistenceContext
+    @Autowired
     private EntityManager em;
 
     @Override
-    public Map<String, Object> getAllVideoGames(int pageNum, int pageSize) {
+    public getAllVideoGamesResponse getAllVideoGames(int pageNum, int pageSize) {
         Pageable page = PageRequest.of(pageNum - 1, pageSize);
         Page<VideoGames> pagedResult = videogameDAO.findAll(page);
-        Map<String, Object> response = new LinkedHashMap<>();
-        response.put("videogames", pagedResult.getContent());
-        response.put("currentpage", pagedResult.getNumber() + 1);
-        response.put("totalpages", pagedResult.getTotalPages());
+        getAllVideoGamesResponse response = new getAllVideoGamesResponse();
+        response.setStatus(HttpStatus.OK);
+        response.setStatusCode(HttpStatus.OK.value());
+        response.setMessage("Successfully retrieved all Video Games");
+        response.setData(pagedResult.getContent());
+        response.setCurrentPage(pagedResult.getNumber() + 1);
+        response.setTotalPages(pagedResult.getTotalPages());
+        response.setTimestamp(LocalDateTime.now());
         return response;
     }
 

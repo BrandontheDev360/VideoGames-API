@@ -1,6 +1,7 @@
-package com.example.SpringBootSQLRESTAPI.Service;
+package com.example.SpringBootSQLRESTAPI.Service.Interfaces;
 
 import com.example.SpringBootSQLRESTAPI.Entity.VideoGames;
+import com.example.SpringBootSQLRESTAPI.Model.getAllVideoGamesResponse;
 import org.springframework.beans.support.PagedListHolder;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.Map;
 
 public interface VideogameServiceInterface {
 
-    Map<String, Object> getAllVideoGames(int pageNum, int pageSize);
+    getAllVideoGamesResponse getAllVideoGames(int pageNum, int pageSize);
 
     VideoGames getVideoGameById(int videoGameID);
 
