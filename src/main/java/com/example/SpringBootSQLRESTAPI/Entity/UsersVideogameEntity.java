@@ -17,6 +17,10 @@ import javax.persistence.*;
                         @StoredProcedureParameter(name = "User_ID", type = Integer.class),
                         @StoredProcedureParameter(name = "Videogame_ID", type = Integer.class)
                 }
+        ),
+        @NamedStoredProcedureQuery(
+                name = "sp_Get_All_Users_Videogames_Assocation",
+                procedureName = "sp_Get_All_Users_Videogames_Assocation"
         )
 })
 @Table(schema = "dbo", name = "Users_VideoGames")

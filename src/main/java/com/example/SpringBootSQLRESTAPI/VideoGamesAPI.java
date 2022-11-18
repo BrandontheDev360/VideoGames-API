@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootSQLRestAPIApplication {
+public class VideoGamesAPI {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootSQLRestAPIApplication.class, args);
+		SpringApplication.run(VideoGamesAPI.class, args);
 	}
 
 }

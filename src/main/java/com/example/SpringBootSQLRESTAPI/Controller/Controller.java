@@ -149,6 +149,11 @@ public class Controller {
         }
     }
 
+    @GetMapping("/get-all-users-videogames-associations")
+    public Map<String, Object> getAllUsersVideoGamesAssociations() {
+        return usersVideogamesServiceInterface.getAllUsersVideogamesAssociations();
+    }
+
 
     @PostMapping("post/videogame")
     public ResponseEntity<Response> addVideoGame(@RequestBody VideoGames videogame) {

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.StoredProcedureQuery;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -35,6 +37,37 @@ public class UsersVideogamesServiceImpl implements UsersVideogamesServiceInterfa
             } else {
                 response.put("statusCode", 400);
                 response.put("statusMessage", "Failed to inserted User's VideoGame");
+                return response;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            response.put("statusCode", 500);
+            response.put("statusMessage", e.getMessage());
+            return response;
+        }
+    }
+
+    @Override
+    public Map<String, Object> getAllUsersVideogamesAssociations() {
+        Map<String, Object> response = new LinkedHashMap<>();
+        List<Map<String, Object>> mappingResultsList = new ArrayList<>();
+        try {
+            StoredProcedureQuery storedProcedureQuery = em.createNamedStoredProcedureQuery("sp_Get_All_Users_Videogames_Assocation");
+            if (storedProcedureQuery.execute()) {
+                List<Object[]> resultList = storedProcedureQuery.getResultList();
+                for (Object[] eachResult : resultList) {
+                    Map<String, Object> results = new LinkedHashMap<>();
+                    results.put("User_Full_Name", eachResult[0]);
+                    results.put("Users_Videogame", eachResult[1]);
+                    mappingResultsList.add(results);
+                }
+                response.put("statusCode", 200);
+                response.put("statusMessage", "Successfully retrieved All Users VideoGames Associations");
+                response.put("usersVideoGamesAssociations", mappingResultsList);
+                return response;
+            } else {
+                response.put("statusCode", 400);
+                response.put("statusMessage", "Failed to retrieve All User's VideoGame Associations");
                 return response;
             }
         } catch (Exception e) {
