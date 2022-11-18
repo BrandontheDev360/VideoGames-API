@@ -2,7 +2,9 @@ package com.example.SpringBootSQLRESTAPI.Controller;
 
 import com.example.SpringBootSQLRESTAPI.Entity.VideoGames;
 import com.example.SpringBootSQLRESTAPI.Model.Response;
+import com.example.SpringBootSQLRESTAPI.Request.InsertUsersVideogamesRequest;
 import com.example.SpringBootSQLRESTAPI.Service.Interfaces.UserServiceInterface;
+import com.example.SpringBootSQLRESTAPI.Service.Interfaces.UsersVideogamesServiceInterface;
 import com.example.SpringBootSQLRESTAPI.Service.Interfaces.VideogameServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,9 @@ public class Controller {
 
     @Autowired
     UserServiceInterface userServiceInterface;
+
+    @Autowired
+    UsersVideogamesServiceInterface usersVideogamesServiceInterface;
 
     @GetMapping("/")
     public String home() {
@@ -167,6 +172,11 @@ public class Controller {
         }
     }
 
+    @PostMapping("insert-users-videogame")
+    public Map<String, Object> insertUsersVideogame (@RequestBody InsertUsersVideogamesRequest request) {
+        return usersVideogamesServiceInterface.insertUsersVideogame(request);
+    }
+
     @PutMapping("update/videogame/{id}")
     public VideoGames updateVideoGame(@PathVariable("id") int id, @RequestBody VideoGames videogame) {
         return videogameServiceInterface.updateVideoGame(id, videogame);
@@ -176,4 +186,5 @@ public class Controller {
     String deleteVideoGame(@PathVariable("id") int id) {
         return videogameServiceInterface.deleteVideoGame(id);
     }
+
 }
