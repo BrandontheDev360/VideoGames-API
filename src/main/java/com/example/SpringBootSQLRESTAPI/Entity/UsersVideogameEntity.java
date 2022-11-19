@@ -21,6 +21,13 @@ import javax.persistence.*;
         @NamedStoredProcedureQuery(
                 name = "sp_Get_All_Users_Videogames_Assocation",
                 procedureName = "sp_Get_All_Users_Videogames_Assocation"
+        ),
+        @NamedStoredProcedureQuery(
+                name = "sp_Get_Users_Videogames_Assocation_By_Id",
+                procedureName = "sp_Get_Users_Videogames_Assocation_By_Id",
+                parameters = {
+                @StoredProcedureParameter(name = "User_ID", type = Integer.class),
+            }
         )
 })
 @Table(schema = "dbo", name = "Users_VideoGames")

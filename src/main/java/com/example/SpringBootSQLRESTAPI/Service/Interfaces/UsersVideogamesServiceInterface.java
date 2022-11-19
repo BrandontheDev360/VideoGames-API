@@ -8,4 +8,6 @@ public interface UsersVideogamesServiceInterface {
     Map<String, Object> insertUsersVideogame(InsertUsersVideogamesRequest request);
 
     Map<String, Object> getAllUsersVideogamesAssociations();
+
+    Map<String, Object> getAllUsersVideogamesAssociationsById(int userId);
 }

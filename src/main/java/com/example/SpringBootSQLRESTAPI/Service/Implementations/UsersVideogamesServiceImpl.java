@@ -77,4 +77,36 @@ public class UsersVideogamesServiceImpl implements UsersVideogamesServiceInterfa
             return response;
         }
     }
+
+    @Override
+    public Map<String, Object> getAllUsersVideogamesAssociationsById(int userId) {
+        Map<String, Object> response = new LinkedHashMap<>();
+        List<Map<String, Object>> mappingResultsList = new ArrayList<>();
+        try {
+            StoredProcedureQuery storedProcedureQuery = em.createNamedStoredProcedureQuery("sp_Get_Users_Videogames_Assocation_By_Id")
+                    .setParameter("User_ID", userId);
+            if (storedProcedureQuery.getResultList().listIterator().hasNext()) {
+                List<Object[]> resultList = storedProcedureQuery.getResultList();
+                for (Object[] eachResult : resultList) {
+                    Map<String, Object> results = new LinkedHashMap<>();
+                    results.put("User_Full_Name", eachResult[0]);
+                    results.put("Users_Videogame", eachResult[1]);
+                    mappingResultsList.add(results);
+                }
+                response.put("statusCode", 200);
+                response.put("statusMessage", "Successfully retrieved All User's Id: " + userId + " VideoGames Associations");
+                response.put("usersVideoGamesAssociations", mappingResultsList);
+                return response;
+            } else {
+                response.put("statusCode", 204);
+                response.put("statusMessage", "No Data Found");
+                return response;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            response.put("statusCode", 500);
+            response.put("statusMessage", e.getMessage());
+            return response;
+        }
+    }
 }
