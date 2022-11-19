@@ -40,10 +40,10 @@ public class UsersVideogameEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "User_Id", nullable = false)
-    private User userId;
+    private UserEntity userId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "Videogame_Id", nullable = false)
-    private VideoGames videogameId;
+    private VideoGamesEntity videogameId;
 
 }

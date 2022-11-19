@@ -19,7 +19,7 @@ import javax.persistence.*;
         )
 })
 @Table(schema = "dbo", name = "videogames")
-public class VideoGames {
+public class VideoGamesEntity {
 
     @Id
     @Column(name = "videogame_id")

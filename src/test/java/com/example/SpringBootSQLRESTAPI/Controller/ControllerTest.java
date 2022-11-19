@@ -1,6 +1,6 @@
 package com.example.SpringBootSQLRESTAPI.Controller;
 
-import com.example.SpringBootSQLRESTAPI.Entity.VideoGames;
+import com.example.SpringBootSQLRESTAPI.Entity.VideoGamesEntity;
 import com.example.SpringBootSQLRESTAPI.Service.Interfaces.VideogameServiceInterface;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +35,9 @@ class ControllerTest {
 
     @Test
     void findByGenre() {
-        VideoGames sample = new VideoGames(1, "Test", "RPG");
+        VideoGamesEntity sample = new VideoGamesEntity(1, "Test", "RPG");
         videogameServiceInterface.addVideoGame(sample);
-        VideoGames result = videogameServiceInterface.findByGenre("RPG");
+        VideoGamesEntity result = videogameServiceInterface.findByGenre("RPG");
         assertNotNull(result);
     }
 }

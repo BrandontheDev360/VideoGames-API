@@ -57,8 +57,10 @@ public class UsersVideogamesServiceImpl implements UsersVideogamesServiceInterfa
                 List<Object[]> resultList = storedProcedureQuery.getResultList();
                 for (Object[] eachResult : resultList) {
                     Map<String, Object> results = new LinkedHashMap<>();
-                    results.put("User_Full_Name", eachResult[0]);
-                    results.put("Users_Videogame", eachResult[1]);
+                    results.put("User_Id", eachResult[0]);
+                    results.put("User_Full_Name", eachResult[1]);
+                    results.put("VideoGame_Id", eachResult[2]);
+                    results.put("VideoGame_Title", eachResult[3]);
                     mappingResultsList.add(results);
                 }
                 response.put("statusCode", 200);
@@ -89,8 +91,10 @@ public class UsersVideogamesServiceImpl implements UsersVideogamesServiceInterfa
                 List<Object[]> resultList = storedProcedureQuery.getResultList();
                 for (Object[] eachResult : resultList) {
                     Map<String, Object> results = new LinkedHashMap<>();
-                    results.put("User_Full_Name", eachResult[0]);
-                    results.put("Users_Videogame", eachResult[1]);
+                    results.put("User_Id", eachResult[0]);
+                    results.put("User_Full_Name", eachResult[1]);
+                    results.put("VideoGame_Id", eachResult[2]);
+                    results.put("VideoGame_Title", eachResult[3]);
                     mappingResultsList.add(results);
                 }
                 response.put("statusCode", 200);

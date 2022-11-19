@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @Data
-public class getAllVideoGamesResponse {
+public class GetAllVideoGamesResponse {
     private HttpStatus status;
     private int statusCode;
     private String message;

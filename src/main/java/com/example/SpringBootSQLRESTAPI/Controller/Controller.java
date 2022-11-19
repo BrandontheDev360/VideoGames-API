@@ -1,6 +1,6 @@
 package com.example.SpringBootSQLRESTAPI.Controller;
 
-import com.example.SpringBootSQLRESTAPI.Entity.VideoGames;
+import com.example.SpringBootSQLRESTAPI.Entity.VideoGamesEntity;
 import com.example.SpringBootSQLRESTAPI.Model.Response;
 import com.example.SpringBootSQLRESTAPI.Request.InsertUsersVideogamesRequest;
 import com.example.SpringBootSQLRESTAPI.Service.Interfaces.UserServiceInterface;
@@ -161,7 +161,7 @@ public class Controller {
 
 
     @PostMapping("post/videogame")
-    public ResponseEntity<Response> addVideoGame(@RequestBody VideoGames videogame) {
+    public ResponseEntity<Response> addVideoGame(@RequestBody VideoGamesEntity videogame) {
         try {
             return ResponseEntity.ok(
                     Response.builder()
@@ -188,7 +188,7 @@ public class Controller {
     }
 
     @PutMapping("update/videogame/{id}")
-    public VideoGames updateVideoGame(@PathVariable("id") int id, @RequestBody VideoGames videogame) {
+    public VideoGamesEntity updateVideoGame(@PathVariable("id") int id, @RequestBody VideoGamesEntity videogame) {
         return videogameServiceInterface.updateVideoGame(id, videogame);
     }
 

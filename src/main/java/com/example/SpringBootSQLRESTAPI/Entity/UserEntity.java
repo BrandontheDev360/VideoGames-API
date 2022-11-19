@@ -14,7 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(schema = "dbo",name = "users")
-public class User {
+public class UserEntity {
     @Id
     @Column(name = "User_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)

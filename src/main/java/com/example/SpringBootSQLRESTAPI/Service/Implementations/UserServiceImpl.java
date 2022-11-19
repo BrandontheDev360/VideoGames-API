@@ -1,6 +1,6 @@
 package com.example.SpringBootSQLRESTAPI.Service.Implementations;
 
-import com.example.SpringBootSQLRESTAPI.Entity.User;
+import com.example.SpringBootSQLRESTAPI.Entity.UserEntity;
 import com.example.SpringBootSQLRESTAPI.Model.UserResponse;
 import com.example.SpringBootSQLRESTAPI.Repository.UserDAO;
 import com.example.SpringBootSQLRESTAPI.Service.Interfaces.UserServiceInterface;
@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserServiceInterface {
     @Override
     public UserResponse getAllUsers() {
         UserResponse response = new UserResponse();
-        List<User> listOfUsers = userDAO.findAll();
+        List<UserEntity> listOfUsers = userDAO.findAll();
         response.setStatus(HttpStatus.OK);
         response.setStatusCode(HttpStatus.OK.value());
         response.setMessage("Successfully retrieved all Users");
