@@ -104,6 +104,7 @@ public class UsersVideogamesServiceImpl implements UsersVideogamesServiceInterfa
             } else {
                 response.put("statusCode", 204);
                 response.put("statusMessage", "No Data Found");
+                response.put("usersVideoGamesAssociations", mappingResultsList);
                 return response;
             }
         } catch (Exception e) {
