@@ -1,7 +1,7 @@
 package com.example.SpringBootSQLRESTAPI.Service.Implementations;
 
 import com.example.SpringBootSQLRESTAPI.Entity.VideoGamesEntity;
-import com.example.SpringBootSQLRESTAPI.Model.GetAllVideoGamesResponse;
+import com.example.SpringBootSQLRESTAPI.Response.GetAllVideoGamesResponse;
 import com.example.SpringBootSQLRESTAPI.Repository.VideogameDAO;
 import com.example.SpringBootSQLRESTAPI.Service.Interfaces.VideogameServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;

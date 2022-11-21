@@ -1,7 +1,7 @@
 package com.example.SpringBootSQLRESTAPI.Service.Implementations;
 
 import com.example.SpringBootSQLRESTAPI.Entity.UserEntity;
-import com.example.SpringBootSQLRESTAPI.Model.UserResponse;
+import com.example.SpringBootSQLRESTAPI.Response.UserResponse;
 import com.example.SpringBootSQLRESTAPI.Repository.UserDAO;
 import com.example.SpringBootSQLRESTAPI.Service.Interfaces.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;

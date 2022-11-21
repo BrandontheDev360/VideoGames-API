@@ -1,6 +1,6 @@
 package com.example.SpringBootSQLRESTAPI.Service.Interfaces;
 
-import com.example.SpringBootSQLRESTAPI.Model.UserResponse;
+import com.example.SpringBootSQLRESTAPI.Response.UserResponse;
 
 public interface UserServiceInterface {
     UserResponse getAllUsers();

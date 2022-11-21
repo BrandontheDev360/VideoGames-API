@@ -1,7 +1,7 @@
 package com.example.SpringBootSQLRESTAPI.Controller;
 
 import com.example.SpringBootSQLRESTAPI.Entity.VideoGamesEntity;
-import com.example.SpringBootSQLRESTAPI.Model.Response;
+import com.example.SpringBootSQLRESTAPI.Response.Response;
 import com.example.SpringBootSQLRESTAPI.Request.InsertUsersVideogamesRequest;
 import com.example.SpringBootSQLRESTAPI.Service.Interfaces.UserServiceInterface;
 import com.example.SpringBootSQLRESTAPI.Service.Interfaces.UsersVideogamesServiceInterface;

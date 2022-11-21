@@ -1,10 +1,8 @@
 package com.example.SpringBootSQLRESTAPI.Service.Interfaces;
 
 import com.example.SpringBootSQLRESTAPI.Entity.VideoGamesEntity;
-import com.example.SpringBootSQLRESTAPI.Model.GetAllVideoGamesResponse;
-import org.springframework.beans.support.PagedListHolder;
+import com.example.SpringBootSQLRESTAPI.Response.GetAllVideoGamesResponse;
 
-import java.util.List;
 import java.util.Map;
 
 public interface VideogameServiceInterface {
