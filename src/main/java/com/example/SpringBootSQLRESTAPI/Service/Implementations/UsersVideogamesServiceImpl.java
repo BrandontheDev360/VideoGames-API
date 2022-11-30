@@ -27,13 +27,15 @@ public class UsersVideogamesServiceImpl implements UsersVideogamesServiceInterfa
                     .setParameter("User_ID", request.getUserId())
                     .setParameter("Videogame_ID", request.getVideoGameId());
             List<Object[]> resultList = storedProcedureQuery.getResultList();
-            Object[] result = resultList.get(0);
-            if (result[0].toString().equalsIgnoreCase("0")) {
+            Object[] resultSet = resultList.get(0);
+            String returnStatus = resultSet[0].toString();
+            String returnMessage = resultSet[1].toString();
+            if (returnStatus.equalsIgnoreCase("0")) {
                 response.put("statusCode", 200);
-                response.put("statusMessage", result[1].toString());
+                response.put("statusMessage", returnMessage);
             } else {
                 response.put("statusCode", 404);
-                response.put("statusMessage", result[1].toString());
+                response.put("statusMessage", returnMessage);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
