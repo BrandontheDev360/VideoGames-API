@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.StoredProcedureQuery;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class UsersVideogamesServiceImpl implements UsersVideogamesServiceInterface {
@@ -29,22 +26,21 @@ public class UsersVideogamesServiceImpl implements UsersVideogamesServiceInterfa
             StoredProcedureQuery storedProcedureQuery = em.createNamedStoredProcedureQuery("sp_Insert_Users_Videogame")
                     .setParameter("User_ID", request.getUserId())
                     .setParameter("Videogame_ID", request.getVideoGameId());
-            String returnStatus = storedProcedureQuery.getResultList().get(0).toString();
-            if (returnStatus.equalsIgnoreCase("0")) {
+            List<Object[]> resultList = storedProcedureQuery.getResultList();
+            Object[] result = resultList.get(0);
+            if (result[0].toString().equalsIgnoreCase("0")) {
                 response.put("statusCode", 200);
-                response.put("statusMessage", "Successfully inserted User's VideoGame");
-                return response;
+                response.put("statusMessage", result[1].toString());
             } else {
-                response.put("statusCode", 400);
-                response.put("statusMessage", "Failed to inserted User's VideoGame");
-                return response;
+                response.put("statusCode", 404);
+                response.put("statusMessage", result[1].toString());
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             response.put("statusCode", 500);
             response.put("statusMessage", e.getMessage());
-            return response;
         }
+        return response;
     }
 
     @Override
